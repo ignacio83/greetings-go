@@ -31,11 +31,15 @@ func Hellos(names []string) (map[string]string, error) {
 	return messages, nil
 }
 
+const welcome = "Hi, %v. Welcome!"
+const greatSeeYou = "Great to see you, %v!"
+const hail = "Hail, %v! Well met!"
+
 func randomGreeting() string {
 	formats := []string{
-		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
-		"Hail, %v! Well met!",
+		welcome,
+		greatSeeYou,
+		hail,
 	}
 	return formats[rand.Intn(len(formats))]
 }

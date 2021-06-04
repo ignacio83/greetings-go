@@ -11,8 +11,12 @@ import (
 	"strings"
 )
 
+const requestTypeMessage = "Please, type the names, you should separate then with commas (,): "
+const logPrefix = "grettings: "
+const outputGreetingsFormat = "Input name:%s, Greeting: %s\n"
+
 func init() {
-	log.SetPrefix("grettings: ")
+	log.SetPrefix(logPrefix)
 	log.SetFlags(0)
 }
 
@@ -31,13 +35,13 @@ func main() {
 	}
 
 	for k, v := range hellos {
-		fmt.Printf("Input name:%s, Greeting: %s\n", k, v)
+		fmt.Printf(outputGreetingsFormat, k, v)
 	}
 }
 
 func requestAndReadNames() ([]string, error) {
 	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Print("Please, type the names, you should separate then with commas (,): ")
+	fmt.Print(requestTypeMessage)
 
 	scanner.Scan()
 	namesInput := scanner.Text()
