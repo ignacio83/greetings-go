@@ -11,18 +11,36 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-func Hello(name string) (string, error) {
+const (
+	english    = iota
+	portuguese = iota
+)
+
+var formatsByLanguage = map[int][]string{
+	english: {
+		"Hi, %v. Welcome!",
+		"Great to see you, %v!",
+		"Hail, %v! Well met!",
+	},
+	portuguese: {
+		"Olá, %v. Bem vindo!",
+		"Bom te ver, %v!",
+		"Oi, %v, espero que esteja tudo bem com você!",
+	},
+}
+
+func Hello(name string, language int) (string, error) {
 	if name == "" {
 		return "", errors.New("empty name")
 	}
-	message := fmt.Sprintf(randomGreeting(), name)
+	message := fmt.Sprintf(randomGreeting(language), name)
 	return message, nil
 }
 
-func Hellos(names []string) (map[string]string, error) {
+func Hellos(names []string, language int) (map[string]string, error) {
 	messages := make(map[string]string)
 	for _, name := range names {
-		message, err := Hello(name)
+		message, err := Hello(name, language)
 		if err != nil {
 			return nil, err
 		}
@@ -31,15 +49,7 @@ func Hellos(names []string) (map[string]string, error) {
 	return messages, nil
 }
 
-const welcome = "Hi, %v. Welcome!"
-const greatSeeYou = "Great to see you, %v!"
-const hail = "Hail, %v! Well met!"
-
-func randomGreeting() string {
-	formats := []string{
-		welcome,
-		greatSeeYou,
-		hail,
-	}
+func randomGreeting(language int) string {
+	formats := formatsByLanguage[language]
 	return formats[rand.Intn(len(formats))]
 }
