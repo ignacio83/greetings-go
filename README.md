@@ -1,3 +1,4 @@
+# grettings-go
 O intuito desse projeto é estudar #golang, documentei passo a passo do meu aprendizado aqui.
 
 # Aprendendo #golang
