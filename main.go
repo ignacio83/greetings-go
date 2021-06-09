@@ -29,7 +29,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	hellos, err := grettings.Hellos(names)
+	hellos, err := grettings.Hellos(names, grettings.English)
 	if err != nil {
 		log.Fatal(err)
 	}

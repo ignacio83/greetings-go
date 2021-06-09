@@ -12,17 +12,17 @@ func init() {
 }
 
 const (
-	english    = iota
-	portuguese = iota
+	English    = iota
+	Portuguese = iota
 )
 
 var formatsByLanguage = map[int][]string{
-	english: {
+	English: {
 		"Hi, %v. Welcome!",
 		"Great to see you, %v!",
 		"Hail, %v! Well met!",
 	},
-	portuguese: {
+	Portuguese: {
 		"Olá, %v. Bem vindo!",
 		"Bom te ver, %v!",
 		"Oi, %v, espero que esteja tudo bem com você!",
