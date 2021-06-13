@@ -66,7 +66,7 @@ func TestHellos(t *testing.T) {
 func assertError(t testing.TB, got error, want error) {
 	t.Helper()
 	if got == nil {
-		t.Fatal("didn't get an error but wanted one")
+		t.Fatal("didn't get an error but wanted %v", want)
 	}
 
 	if got != want {
