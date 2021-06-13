@@ -29,9 +29,11 @@ var formatsByLanguage = map[int][]string{
 	},
 }
 
+var ErrEmptyName = errors.New("empty name")
+
 func Hello(name string, language int) (string, error) {
 	if name == "" {
-		return "", errors.New("empty name")
+		return "", ErrEmptyName
 	}
 	message := fmt.Sprintf(randomGreeting(language), name)
 	return message, nil

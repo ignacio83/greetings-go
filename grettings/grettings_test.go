@@ -25,11 +25,20 @@ func TestHello(t *testing.T) {
 	})
 
 	t.Run("Should return error when name is empty", func(t *testing.T) {
-		got, err := Hello("", English)
-		if got != "" || err == nil {
-			t.Fatalf(`Hello("") = %q, %v, want "", error`, got, err)
-		}
+		_, err := Hello("", English)
+		assertError(t, err, ErrEmptyName)
 	})
+}
+
+func assertError(t testing.TB, got error, want error) {
+	t.Helper()
+	if got == nil {
+		t.Fatal("didn't get an error but wanted one")
+	}
+
+	if got != want {
+		t.Errorf("got %q, want %q", got, want)
+	}
 }
 
 func BenchmarkHellos(b *testing.B) {
